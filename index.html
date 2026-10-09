@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sample Realty (Demo) – Real Estate Website</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap">
+<style>
+:root{--navy:#0E1A3A;--navy2:#16254F;--gold:#B8913F;--gold2:#D9B965;--ivory:#F7F5EF;--ink:#1B2238;--mute:#667089;--line:#E3DFD3;--wa:#1FAF5A;--red:#b3261e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:110px;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:Jost,system-ui,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;margin:0;line-height:1.15}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.banner{background:var(--gold);color:#fff;text-align:center;font-size:.85rem;padding:6px 12px;font-weight:500}
+header{position:sticky;top:0;z-index:20;background:var(--navy);border-bottom:1px solid var(--gold)}
+nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--gold2);text-decoration:none}
+.logo span{color:#fff;font-weight:500}
+nav .links{display:flex;gap:20px;align-items:center}
+nav .links a{color:#d8dcea;text-decoration:none;font-size:.95rem}
+nav .links a:hover{color:var(--gold2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:600 .92rem Jost,sans-serif;padding:11px 20px;border-radius:3px;text-decoration:none;transition:background .2s}
+.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:#9c7a30}
+.btn-wa{background:var(--wa);color:#fff}.btn-wa:hover{background:#17924a}
+.btn-line{background:transparent;border:1px solid var(--gold);color:var(--navy)}.btn-line:hover{background:var(--navy);color:#fff}
+.btn-red{background:#fff;border:1px solid var(--red);color:var(--red)}
+.btn-sm{padding:6px 10px;font-size:.8rem}
+.hero{background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;padding:70px 0 90px;position:relative;overflow:hidden}
+.hero svg.sky{position:absolute;right:0;bottom:0;width:min(560px,70%);opacity:.2}
+.hero h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:600;max-width:680px;position:relative}
+.hero p{max-width:520px;color:#c9cfe3;font-size:1.08rem;margin:16px 0 28px;position:relative}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;position:relative}
+.hero .btn-line{color:#fff}
+.stats{display:flex;gap:36px;margin-top:44px;flex-wrap:wrap;position:relative}
+.stats b{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold2);display:block;line-height:1}
+.stats span{font-size:.85rem;color:#b5bcd4}
+.filters{background:#fff;margin-top:-40px;position:relative;z-index:5;border:1px solid var(--line);border-top:3px solid var(--gold);padding:18px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:12px;box-shadow:0 14px 30px rgba(14,26,58,.12)}
+label{font-size:.8rem;color:var(--mute);display:block;margin-bottom:4px}
+input,select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink)}
+input[type=checkbox]{width:auto}
+input:focus,select:focus,textarea:focus,.btn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+section{padding:60px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(1.9rem,4vw,2.6rem);color:var(--navy)}
+.sec-head p{margin:4px 0 0;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:24px}
+.card{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+.art{height:190px;position:relative}
+.art svg{width:100%;height:100%;display:block}
+.tag{position:absolute;top:12px;left:12px;background:var(--navy);color:var(--gold2);font-size:.75rem;padding:3px 10px;border:1px solid var(--gold)}
+.fav{position:absolute;top:8px;right:8px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);cursor:pointer;font-size:1.2rem;color:#999}
+.fav.on{color:#c0392b}
+.body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.price{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--gold)}
+.card h3{font-size:1.3rem;color:var(--navy)}
+.loc{color:var(--mute);font-size:.92rem}
+.specs{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem;border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.actions{display:flex;gap:8px;margin-top:6px}
+.actions .btn{flex:1;padding:10px 8px;font-size:.88rem}
+.empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:40px}
+.about{background:var(--navy);color:#fff}
+.about h2{color:var(--gold2);font-size:2.3rem;margin-bottom:12px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:28px}
+.feat div{border-left:2px solid var(--gold);padding-left:16px}
+.feat h3{color:#fff;font-size:1.3rem}.feat p{margin:6px 0 0;color:#b9c0d8;font-size:.95rem}
+.emi{display:grid;grid-template-columns:1fr 1fr;gap:30px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);padding:28px}
+.emi .out{background:var(--navy);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.emi .out b{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold2);line-height:1}
+.emi .out small{color:#b9c0d8}
+.tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.test{background:#fff;border:1px solid var(--line);padding:22px}
+.test p{margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:1.2rem}
+.test span{font-size:.85rem;color:var(--mute)}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:40px}
+form.f{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);padding:24px;display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.err{color:var(--red);font-size:.8rem;min-height:1em}
+.ok{background:#e9f6ee;border:1px solid #9fd3b3;padding:12px;font-size:.92rem}
+footer{background:#0A1330;color:#98a1bd;padding:28px 0;font-size:.9rem;text-align:center}
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:56px;height:56px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.3);text-decoration:none;font-size:1.6rem}
+.modal{position:fixed;inset:0;background:rgba(10,19,48,.7);display:none;align-items:center;justify-content:center;z-index:40;padding:16px}
+.modal.on{display:flex}
+.mbox{background:#fff;max-width:620px;width:100%;max-height:92vh;overflow:auto;border-top:3px solid var(--gold)}
+.mbody{padding:22px;display:grid;gap:10px}
+.close{float:right;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--mute)}
+/* owner */
+.ownerbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.ownerbar h2{font-size:2.2rem;color:var(--navy)}
+.loginbox{max-width:380px;margin:30px auto;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);padding:28px;display:grid;gap:14px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+.stat{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);padding:14px 16px}
+.stat b{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--navy);display:block;line-height:1}
+.stat span{font-size:.85rem;color:var(--mute)}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tabs button{background:none;border:0;padding:10px 18px;font:600 .95rem Jost,sans-serif;color:var(--mute);cursor:pointer;border-bottom:3px solid transparent}
+.tabs button.on{color:var(--navy);border-bottom-color:var(--gold)}
+.tw{overflow-x:auto;background:#fff;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:640px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f1eee4;font-weight:600;color:var(--navy)}
+.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.78rem;font-weight:600}
+.pill.av,.pill.Closed{background:#e3f4ea;color:#17663a}.pill.sold{background:#f7e0de;color:var(--red)}
+.pill.New{background:#fff1d1;color:#8a6200}.pill.Contacted{background:#dfe8fb;color:#23468f}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}
+.pform{background:#fff;border:1px solid var(--line);padding:20px;display:grid;gap:12px;margin-bottom:22px}
+.pform .three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.art img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs{display:flex;gap:10px;flex-wrap:wrap}
+.thumb{position:relative;width:84px;height:64px;border:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb button{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;border:0;background:var(--red);color:#fff;cursor:pointer;line-height:1}
+.gal{display:flex;gap:6px;overflow-x:auto;padding:8px 22px 0}
+.gal img{width:72px;height:54px;object-fit:cover;cursor:pointer;border:2px solid transparent;flex:none}
+.gal img.on{border-color:var(--gold)}
+@media(max-width:860px){.filters{grid-template-columns:1fr 1fr}.filters .full{grid-column:1/-1}.contact,.emi{grid-template-columns:1fr}nav .links a.hide{display:none}.pform .three{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="banner" id="banner">DEMO WEBSITE: all properties, names and contact details are sample data</div>
+<header><div class="wrap"><nav>
+<a class="logo" href="#top" id="logo">Sample <span>Realty</span></a>
+<div class="links" id="navClient"><a class="hide" href="#listings">Properties</a><a class="hide" href="#emi">EMI calculator</a><a href="#enquiry" class="btn btn-gold btn-sm">Contact us</a></div>
+<div class="links" id="navOwner" hidden><a href="#top" class="btn btn-line btn-sm" style="color:#fff">← Back to website</a></div>
+</nav></div></header>
+
+<!-- ================= CLIENT VIEW ================= -->
+<main id="client" class="view">
+<div class="hero" id="top"><div class="wrap">
+<h1 id="hTitle">Find your dream home or plot in Delhi NCR</h1>
+<p id="hSub">Villas, apartments, plots and commercial spaces across Faridabad, Gurugram, Noida and Delhi. Verified listings, clear pricing.</p>
+<div class="cta"><a href="#listings" class="btn btn-gold">View properties</a><a id="heroWa" class="btn btn-line" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+<div class="stats"><div><b>350+</b><span>Properties sold</span></div><div><b>12 yrs</b><span>In Delhi NCR</span></div><div><b>100%</b><span>Verified titles</span></div></div>
+</div>
+<svg class="sky" viewBox="0 0 400 200" fill="#D9B965"><rect x="10" y="90" width="40" height="110"/><rect x="60" y="50" width="50" height="150"/><rect x="120" y="100" width="40" height="100"/><rect x="170" y="20" width="55" height="180"/><rect x="235" y="70" width="45" height="130"/><rect x="290" y="110" width="40" height="90"/><rect x="340" y="60" width="50" height="140"/></svg>
+</div>
+
+<div class="wrap"><div class="filters" id="listings">
+<div class="full"><label for="q">Search location or name</label><input id="q" placeholder="e.g. Sector 21, Golf Course Road"></div>
+<div><label for="city">City</label><select id="city"></select></div>
+<div><label for="type">Type</label><select id="type"></select></div>
+<div><label for="budget">Budget</label><select id="budget"><option value="">Any budget</option><option value="0-50">Under ₹50 Lakh</option><option value="50-150">₹50 L – ₹1.5 Cr</option><option value="150-400">₹1.5 Cr – ₹4 Cr</option><option value="400-999999">Above ₹4 Cr</option></select></div>
+<div><label for="sort">Sort by</label><select id="sort"><option value="">Featured</option><option value="asc">Price: low to high</option><option value="desc">Price: high to low</option></select></div>
+</div></div>
+
+<section style="padding-top:40px"><div class="wrap">
+<div class="sec-head"><div><h2>Featured properties</h2><p id="count"></p></div><label style="display:flex;gap:6px;align-items:center;font-size:.92rem"><input type="checkbox" id="savedOnly"> Show saved ♥ only</label></div>
+<div class="grid" id="grid"></div>
+</div></section>
+
+<section class="about" id="about"><div class="wrap">
+<h2>Why choose Sample Realty</h2>
+<p style="max-width:620px;color:#c9cfe3">We handle the full journey: site visits, legal checks, loan help and registry, so you only make the final decision.</p>
+<div class="feat">
+<div><h3>Verified titles</h3><p>Every listing is checked for clear ownership before it goes live.</p></div>
+<div><h3>Transparent pricing</h3><p>No hidden charges. You see the full cost upfront.</p></div>
+<div><h3>Site visit support</h3><p>Visits arranged at your convenience, including weekends.</p></div>
+<div><h3>Loan and legal help</h3><p>Tie-ups with major banks and property lawyers.</p></div>
+</div></div></section>
+
+<section id="emi"><div class="wrap">
+<div class="sec-head"><div><h2>Home loan EMI calculator</h2><p>Estimate your monthly payment before you visit.</p></div></div>
+<div class="emi"><div style="display:grid;gap:12px;align-content:start">
+<div><label for="eA">Loan amount (₹ Lakh)</label><input id="eA" type="number" value="50" min="1"></div>
+<div><label for="eR">Interest rate (% per year)</label><input id="eR" type="number" value="8.5" step="0.1" min="1"></div>
+<div><label for="eY">Tenure (years)</label><input id="eY" type="number" value="20" min="1" max="40"></div></div>
+<div class="out"><small>Monthly EMI</small><b id="oE">–</b><small id="oI"></small><small id="oT"></small></div></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+<div class="sec-head"><div><h2>What clients say</h2><p>Sample testimonials for demo purposes</p></div></div>
+<div class="tests">
+<div class="test"><p>Smooth process from site visit to registry. Felt completely safe.</p><span>Sample Client A, Faridabad</span></div>
+<div class="test"><p>They showed only plots with clear papers. Saved me weeks of searching.</p><span>Sample Client B, Gurugram</span></div>
+<div class="test"><p>Got the right loan help and a fair price on my flat.</p><span>Sample Client C, Noida</span></div>
+</div></div></section>
+
+<section id="enquiry" style="padding-top:0"><div class="wrap contact">
+<div>
+<h2 style="font-size:2.4rem;color:var(--navy)">Send an enquiry</h2>
+<p style="color:var(--mute)">Fill the form and we will reply on WhatsApp or call you within a few hours.</p>
+<p><b>Phone:</b> <a id="phoneLink" href="#"></a><br><b>Office:</b> <span id="addr">Sample Address, Faridabad, Haryana</span><br><b>Hours:</b> Mon–Sat, 10 AM – 7 PM</p>
+<a id="sideWa" class="btn btn-wa" target="_blank" rel="noopener">Chat on WhatsApp</a>
+</div>
+<form class="f" id="form" novalidate>
+<div class="two"><div><label for="fn">Full name</label><input id="fn" autocomplete="name"><div class="err" id="e-fn"></div></div>
+<div><label for="fp">Phone number</label><input id="fp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit mobile"><div class="err" id="e-fp"></div></div></div>
+<div class="two"><div><label for="fe">Email (optional)</label><input id="fe" type="email" autocomplete="email"><div class="err" id="e-fe"></div></div>
+<div><label for="fv">Preferred site visit date (optional)</label><input id="fv" type="date"></div></div>
+<div><label for="fprop">Property</label><select id="fprop"></select></div>
+<div><label for="fm">Message</label><textarea id="fm" rows="3" placeholder="Budget, questions, anything else"></textarea></div>
+<button class="btn btn-gold" type="submit">Send enquiry</button>
+<div class="ok" id="ok" hidden>Thank you! Your enquiry is saved and WhatsApp has opened so you can send it to us directly.</div>
+</form>
+</div></section>
+</main>
+
+<!-- ================= OWNER VIEW ================= -->
+<main id="owner" class="view" hidden><div class="wrap" style="padding-top:34px;padding-bottom:60px">
+<form class="loginbox" id="login" novalidate>
+<h2 style="color:var(--navy);font-size:2rem">Owner login</h2>
+<div><label for="pw">Password</label><input id="pw" type="password" autocomplete="off"><div class="err" id="e-pw"></div></div>
+<button class="btn btn-gold" type="submit">Login</button>
+<small style="color:var(--mute)">Authorised staff only.</small>
+</form>
+<div id="dash" hidden>
+<div class="ownerbar"><h2>Owner dashboard</h2><div class="row-actions"><button class="btn btn-line btn-sm" id="resetBtn">Reset demo data</button><button class="btn btn-gold btn-sm" id="logout">Logout</button></div></div>
+<div class="sgrid" id="stats"></div>
+<div class="tabs"><button class="on" data-tab="pList">Properties</button><button data-tab="pEnq">Enquiries<span id="newCnt"></span></button><button data-tab="pSite">Website settings</button></div>
+
+<div id="pList">
+<form class="pform" id="pform" novalidate>
+<h3 id="pfTitle" style="font-size:1.5rem;color:var(--navy)">Add new property</h3>
+<input type="hidden" id="pid">
+<div class="three"><div><label for="pn">Property name</label><input id="pn"></div><div><label for="pc">City</label><input id="pc" list="cl"><datalist id="cl"><option>Faridabad</option><option>Gurugram</option><option>Noida</option><option>Delhi</option></datalist></div><div><label for="pl">Location / sector</label><input id="pl"></div></div>
+<div class="three"><div><label for="pt">Type</label><select id="pt"><option>Apartment</option><option>Villa</option><option>Plot</option><option>Builder Floor</option><option>Commercial</option></select></div><div><label for="pp">Price (₹ Lakh)</label><input id="pp" type="number" min="1"></div><div><label for="pa">Area</label><input id="pa" placeholder="e.g. 1,450 sq ft"></div></div>
+<div class="three"><div><label for="pb">Bedrooms (BHK)</label><input id="pb" type="number" min="0" value="0"></div><div><label for="pbt">Bathrooms</label><input id="pbt" type="number" min="0" value="0"></div><div><label for="pg">Tag</label><input id="pg" placeholder="e.g. New launch"></div></div>
+<div><label for="pd">Description</label><textarea id="pd" rows="2"></textarea></div>
+<div><label for="pimgs">Photos (up to 5, auto-resized)</label><input id="pimgs" type="file" accept="image/*" multiple><div class="thumbs" id="thumbs" style="margin-top:8px"></div></div>
+<div class="err" id="e-p"></div>
+<div class="row-actions"><button class="btn btn-gold" type="submit" id="pSave">Add property</button><button class="btn btn-line" type="button" id="pCancel" hidden>Cancel edit</button></div>
+</form>
+<div class="tw"><table><thead><tr><th>Property</th><th>Location</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead><tbody id="pRows"></tbody></table></div>
+</div>
+
+<div id="pEnq" hidden><div class="tw"><table><thead><tr><th>Date</th><th>Client</th><th>Property</th><th>Message</th><th>Status</th><th>Actions</th></tr></thead><tbody id="eRows"></tbody></table></div></div>
+
+<div id="pSite" hidden><form class="pform" id="sform" novalidate>
+<h3 style="font-size:1.5rem;color:var(--navy)">Website settings</h3>
+<div class="three"><div><label for="sName">Company name</label><input id="sName"></div><div><label for="sWa">WhatsApp number (with country code)</label><input id="sWa" inputmode="numeric" placeholder="919876543210"></div><div><label for="sPhone">Phone to display</label><input id="sPhone"></div></div>
+<div><label for="sAddr">Office address</label><input id="sAddr"></div>
+<div><label for="sTitle">Homepage heading</label><input id="sTitle"></div>
+<div><label for="sSub">Homepage sub-text</label><textarea id="sSub" rows="2"></textarea></div>
+<div><label for="sImg">Homepage background photo</label><input id="sImg" type="file" accept="image/*"><div id="heroPrev" style="margin-top:8px"></div></div>
+<div><label for="sPw">Change owner password</label><input id="sPw" type="password" autocomplete="new-password" placeholder="Leave blank to keep the current one (min 6 characters)"></div>
+<label style="display:flex;gap:6px;align-items:center;font-size:.92rem"><input type="checkbox" id="sDemo"> Show "demo website" banner</label>
+<div class="err" id="e-s"></div><div class="ok" id="sOk" hidden>Saved. Open the website to see the changes.</div>
+<div><button class="btn btn-gold" type="submit">Save settings</button></div>
+</form></div>
+</div>
+</div></main>
+
+<footer><div class="wrap" id="ftxt">© 2026 Sample Realty (Demo). This is a sample project; details are not real.</div></footer>
+<a class="fab" id="fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox" id="mbox"></div></div>
+
+<script>
+// ====== EDIT THESE ======
+var DEF_SITE={name:"Sample Realty",wa:"919999999999",phone:"+91 99999 99999",addr:"Sample Address, Faridabad, Haryana",title:"Find your dream home or plot in Delhi NCR",sub:"Villas, apartments, plots and commercial spaces across Faridabad, Gurugram, Noida and Delhi. Verified listings, clear pricing.",hero:"",demo:true};
+var OWNER_HASH="#manage"; // secret address of the owner panel (open yourwebsite/#manage)
+var DEFAULT_PW_HASH="43a0d17178a9d26c9e0fe9a74b0b45e38d32f27aed887a008a54bf6e033bf7b9"; // SHA-256 of the default password; change the password inside Website settings
+// ========================
+var $=function(i){return document.getElementById(i)};
+var KEY={p:"sr_props",e:"sr_enq",f:"sr_fav",s:"sr_site",w:"sr_pw"},mem={};
+function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):(mem[k]||d)}catch(x){return mem[k]||d}}
+function save(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v));return true}catch(x){return false}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+var SEED_P=[
+{id:1,name:"Royal Palm Villa",city:"Faridabad",loc:"Sector 21C",type:"Villa",lakh:185,bhk:4,bath:4,area:"3,200 sq ft",tag:"For sale",d:"Corner villa with private garden, modular kitchen, covered parking for 3 cars and 24x7 security.",status:"available"},
+{id:2,name:"Aravali Heights 3BHK",city:"Faridabad",loc:"Sector 82, Greater Faridabad",type:"Apartment",lakh:68,bhk:3,bath:2,area:"1,450 sq ft",tag:"Ready to move",d:"East-facing flat on 9th floor with clubhouse, gym, power backup and metro connectivity nearby.",status:"available"},
+{id:3,name:"Golf Course Residency",city:"Gurugram",loc:"Golf Course Road",type:"Apartment",lakh:520,bhk:4,bath:5,area:"3,800 sq ft",tag:"Luxury",d:"Luxury residence with private lift lobby, concierge, infinity pool and golf course views.",status:"available"},
+{id:4,name:"Heritage Plot 200 Gaj",city:"Faridabad",loc:"Sector 75",type:"Plot",lakh:94,bhk:0,bath:0,area:"200 sq yd",tag:"For sale",d:"Residential plot in a gated sector with wide roads, park facing and all approvals in place.",status:"available"},
+{id:5,name:"Crown Builder Floors",city:"Noida",loc:"Sector 128",type:"Builder Floor",lakh:240,bhk:3,bath:3,area:"2,100 sq ft",tag:"New launch",d:"Independent builder floor with stilt parking, terrace access and a quiet tree-lined street.",status:"available"},
+{id:6,name:"Business Suite Nehru Place",city:"Delhi",loc:"Nehru Place, South Delhi",type:"Commercial",lakh:360,bhk:0,bath:2,area:"1,800 sq ft",tag:"Commercial",d:"Furnished office in a prime commercial hub, ideal for firms and clinics.",status:"available"},
+{id:7,name:"Lakeview Farm Villa",city:"Gurugram",loc:"Sohna Road",type:"Villa",lakh:750,bhk:5,bath:6,area:"6,000 sq ft",tag:"Premium",d:"Private villa on a landscaped acre with pool, home theatre, staff quarters and lake view.",status:"available"},
+{id:8,name:"Smart Studio Apartment",city:"Noida",loc:"Sector 62",type:"Apartment",lakh:42,bhk:1,bath:1,area:"620 sq ft",tag:"Investment",d:"Compact studio near IT offices and metro, popular for rental income.",status:"available"}];
+var SEED_E=[
+{id:101,name:"Sample Client A",phone:"9876500001",email:"",property:"Royal Palm Villa",message:"Please share the payment plan.",visit:"",status:"New",time:Date.now()-86400000},
+{id:102,name:"Sample Client B",phone:"9876500002",email:"b@example.com",property:"Heritage Plot 200 Gaj",message:"Can I visit on Sunday?",visit:"",status:"Contacted",time:Date.now()-172800000}];
+var P=load(KEY.p,null);if(!P){P=SEED_P.slice();save(KEY.p,P)}
+var E=load(KEY.e,null);if(!E){E=SEED_E.slice();save(KEY.e,E)}
+var F=load(KEY.f,[]);
+var S=Object.assign({},DEF_SITE,load(KEY.s,{}));
+function price(l){l=+l;return l>=100?"₹"+(Math.round(l)/100)+" Cr":"₹"+l+" Lakh"}
+var PAL=[["#16254F","#B8913F"],["#244067","#D9B965"],["#0E1A3A","#D9B965"],["#3C4A2F","#D9B965"],["#4A1F2E","#D9B965"],["#12332F","#D9B965"]];
+function art(p){var c=PAL[p.id%PAL.length],a=c[0],g=c[1],h;
+if(p.type==="Plot")h='<path d="M40 150 L160 120 L360 130 L340 170 Z" fill="'+g+'" opacity=".35"/><path d="M40 150 L160 120 L360 130 L340 170 Z" fill="none" stroke="'+g+'" stroke-dasharray="6 5" stroke-width="2"/>';
+else if(p.type==="Apartment"||p.type==="Commercial")h='<rect x="130" y="40" width="70" height="130" fill="'+g+'" opacity=".85"/><rect x="210" y="75" width="60" height="95" fill="'+g+'" opacity=".55"/><rect x="95" y="100" width="35" height="70" fill="'+g+'" opacity=".4"/>'+[0,1,2,3].map(function(i){return'<rect x="142" y="'+(55+i*28)+'" width="14" height="14" fill="'+a+'"/><rect x="170" y="'+(55+i*28)+'" width="14" height="14" fill="'+a+'"/>'}).join("");
+else h='<path d="M110 90 L200 40 L290 90 Z" fill="'+g+'"/><rect x="125" y="90" width="150" height="80" fill="'+g+'" opacity=".8"/><rect x="185" y="120" width="30" height="50" fill="'+a+'"/><rect x="140" y="105" width="28" height="24" fill="'+a+'"/><rect x="232" y="105" width="28" height="24" fill="'+a+'"/>';
+return'<svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g'+p.id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+a+'"/><stop offset="1" stop-color="#0A1330"/></linearGradient></defs><rect width="400" height="190" fill="url(#g'+p.id+')"/><circle cx="330" cy="45" r="18" fill="'+g+'" opacity=".5"/>'+h+'<rect y="170" width="400" height="20" fill="#0A1330" opacity=".6"/></svg>'}
+function wa(m){return"https://wa.me/"+S.wa+"?text="+encodeURIComponent(m)}
+function pic(p){return p.imgs&&p.imgs.length?'<img src="'+p.imgs[0]+'" alt="'+esc(p.name)+'">':art(p)}
+function gal(p){return p.imgs&&p.imgs.length>1?'<div class="gal">'+p.imgs.map(function(s,i){return'<img src="'+s+'" data-g="'+i+'" alt="Photo '+(i+1)+'" class="'+(i?'':'on')+'">'}).join("")+'</div>':""}
+function specs(p){return'<span>'+esc(p.type)+'</span>'+(+p.bhk?'<span>'+p.bhk+' BHK</span>':'')+(+p.bath?'<span>'+p.bath+' Bath</span>':'')+'<span>'+esc(p.area)+'</span>'}
+function pmsg(p){return"Hello, I am interested in "+p.name+" ("+p.loc+", "+p.city+") priced at "+price(p.lakh)+". Please share details."}
+
+/* ---------- CLIENT ---------- */
+function fillOpts(el,list,first){var cur=el.value;el.innerHTML='<option value="">'+first+'</option>'+list.map(function(v){return'<option>'+esc(v)+'</option>'}).join("");el.value=list.indexOf(cur)>=0?cur:""}
+function uniq(k){var r=[];P.forEach(function(p){if(r.indexOf(p[k])<0)r.push(p[k])});return r}
+function renderClient(){
+fillOpts($("city"),uniq("city"),"All cities");fillOpts($("type"),uniq("type"),"All types");
+var cur=$("fprop").value;
+$("fprop").innerHTML='<option value="General enquiry">General enquiry</option>'+P.filter(function(p){return p.status!=="sold"}).map(function(p){return'<option value="'+esc(p.name)+'">'+esc(p.name)+' ('+price(p.lakh)+')</option>'}).join("");
+if(cur)$("fprop").value=cur;
+var q=$("q").value.toLowerCase().trim(),c=$("city").value,t=$("type").value,b=$("budget").value,s=$("sort").value,sv=$("savedOnly").checked;
+var r=P.filter(function(p){
+if(p.status==="sold")return false;
+if(sv&&F.indexOf(p.id)<0)return false;
+if(q&&(p.name+" "+p.loc+" "+p.city).toLowerCase().indexOf(q)<0)return false;
+if(c&&p.city!==c)return false;if(t&&p.type!==t)return false;
+if(b){var x=b.split("-");if(p.lakh<+x[0]||p.lakh>+x[1])return false}return true});
+if(s)r.sort(function(a,b){return s==="asc"?a.lakh-b.lakh:b.lakh-a.lakh});
+$("count").textContent=r.length+" propert"+(r.length===1?"y":"ies")+" found";
+$("grid").innerHTML=r.length?r.map(function(p){
+return'<article class="card"><div class="art">'+pic(p)+'<span class="tag">'+esc(p.tag||"For sale")+'</span><button class="fav'+(F.indexOf(p.id)>=0?' on':'')+'" data-f="'+p.id+'" aria-label="Save property">♥</button></div><div class="body"><div class="price">'+price(p.lakh)+'</div><h3>'+esc(p.name)+'</h3><div class="loc">📍 '+esc(p.loc)+', '+esc(p.city)+'</div><div class="specs">'+specs(p)+'</div><div class="actions"><button class="btn btn-line" data-d="'+p.id+'">Details</button><a class="btn btn-wa" target="_blank" rel="noopener" href="'+wa(pmsg(p))+'">WhatsApp</a></div></div></article>'}).join(""):'<div class="empty">No properties match. Try changing the filters.</div>'}
+["q","city","type","budget","sort","savedOnly"].forEach(function(i){$(i).addEventListener("input",renderClient)});
+$("grid").addEventListener("click",function(e){
+var f=e.target.getAttribute("data-f");
+if(f){f=+f;var i=F.indexOf(f);if(i<0)F.push(f);else F.splice(i,1);save(KEY.f,F);renderClient();return}
+var d=e.target.getAttribute("data-d");if(!d)return;
+var p=P.filter(function(x){return x.id==d})[0];
+$("mbox").innerHTML='<div class="art" style="height:220px" id="mainPic">'+pic(p)+'</div>'+gal(p)+'<div class="mbody"><button class="close" aria-label="Close" id="cl">×</button><div class="price">'+price(p.lakh)+'</div><h3 style="font-size:1.7rem;color:var(--navy)">'+esc(p.name)+'</h3><div class="loc">📍 '+esc(p.loc)+', '+esc(p.city)+'</div><div class="specs" style="margin:0">'+specs(p)+'</div><p style="margin:6px 0">'+esc(p.d)+'</p><div class="actions"><a class="btn btn-wa" target="_blank" rel="noopener" href="'+wa(pmsg(p))+'">WhatsApp us</a><button class="btn btn-gold" id="enq" data-id="'+esc(p.name)+'">Book site visit</button></div></div>';
+$("modal").classList.add("on")});
+function closeM(){$("modal").classList.remove("on")}
+$("modal").addEventListener("click",function(e){
+var g=e.target.getAttribute("data-g");if(g!==null){$("mainPic").innerHTML='<img src="'+e.target.src+'" alt="">';[].forEach.call(e.target.parentNode.children,function(x){x.classList.toggle("on",x===e.target)})}
+if(e.target.id==="modal"||e.target.id==="cl")closeM();
+if(e.target.id==="enq"){$("fprop").value=e.target.getAttribute("data-id");closeM();$("enquiry").scrollIntoView()}});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM()});
+function applySite(){
+var w=S.name.trim().split(" ");$("logo").innerHTML=esc(w[0])+(w.length>1?" <span>"+esc(w.slice(1).join(" "))+"</span>":"");
+document.title=S.name+" – Real Estate";
+$("hTitle").textContent=S.title;$("hSub").textContent=S.sub;$("addr").textContent=S.addr;
+["heroWa","sideWa","fab"].forEach(function(i){$(i).href=wa("Hello "+S.name+", I would like to know more about your properties.")});
+$("phoneLink").textContent=S.phone;$("phoneLink").href="tel:+"+S.wa;
+$("banner").hidden=!S.demo;
+$("ftxt").textContent="© 2026 "+S.name+". All rights reserved."+(S.demo?" Demo project; details are not real.":"");
+var h=$("top").style;h.backgroundImage=S.hero?"linear-gradient(rgba(14,26,58,.8),rgba(14,26,58,.9)),url('"+S.hero+"')":"";h.backgroundSize="cover";h.backgroundPosition="center"}
+$("fv").min=new Date().toISOString().slice(0,10);
+// EMI
+function emi(){var A=+$("eA").value*100000,r=+$("eR").value/1200,n=+$("eY").value*12;
+if(!(A>0&&r>0&&n>0)){$("oE").textContent="–";$("oI").textContent="";$("oT").textContent="";return}
+var m=A*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),tot=m*n;
+var f=function(v){return"₹"+Math.round(v).toLocaleString("en-IN")};
+$("oE").textContent=f(m);$("oI").textContent="Total interest: "+f(tot-A);$("oT").textContent="Total payment: "+f(tot)}
+["eA","eR","eY"].forEach(function(i){$(i).addEventListener("input",emi)});emi();
+// Enquiry form
+$("form").addEventListener("submit",function(e){e.preventDefault();
+var n=$("fn").value.trim(),ph=$("fp").value.replace(/[\s-]/g,"").replace(/^(\+91|91|0)(?=\d{10}$)/,""),em=$("fe").value.trim(),ok=true;
+function set(id,m){$("e-"+id).textContent=m;if(m)ok=false}
+set("fn",n.length<2?"Please enter your name.":"");
+set("fp",/^[6-9]\d{9}$/.test(ph)?"":"Enter a valid 10-digit mobile number.");
+set("fe",!em||/^\S+@\S+\.\S+$/.test(em)?"":"Enter a valid email address.");
+if(!ok)return;
+var d={id:Date.now(),name:n,phone:ph,email:em,property:$("fprop").value,message:$("fm").value.trim(),visit:$("fv").value,status:"New",time:Date.now()};
+E.unshift(d);save(KEY.e,E);
+var msg="New enquiry from website\nName: "+n+"\nPhone: "+ph+(em?"\nEmail: "+em:"")+"\nProperty: "+d.property+(d.visit?"\nVisit date: "+d.visit:"")+(d.message?"\nMessage: "+d.message:"");
+$("ok").hidden=false;$("form").reset();window.open(wa(msg),"_blank")});
+
+/* ---------- OWNER ---------- */
+var authed=false;try{authed=sessionStorage.getItem("sr_auth")==="1"}catch(x){}
+async function sha(t){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return[].map.call(new Uint8Array(b),function(x){return("0"+x.toString(16)).slice(-2)}).join("")}
+$("login").addEventListener("submit",async function(e){e.preventDefault();
+var h="";try{h=await sha($("pw").value)}catch(x){}
+if(h&&h===(load(KEY.w,"")||DEFAULT_PW_HASH)){authed=true;try{sessionStorage.setItem("sr_auth","1")}catch(x){}$("pw").value="";$("e-pw").textContent="";renderOwner();fillSite()}else $("e-pw").textContent="Wrong password. Please try again."});
+$("logout").addEventListener("click",function(){authed=false;try{sessionStorage.removeItem("sr_auth")}catch(x){}renderOwner();location.hash="#top"});
+function arm(btn,txt){if(btn.getAttribute("data-arm")){return true}btn.setAttribute("data-arm","1");btn.setAttribute("data-t",btn.textContent);btn.textContent=txt;setTimeout(function(){btn.removeAttribute("data-arm");btn.textContent=btn.getAttribute("data-t")||btn.textContent},3000);return false}
+$("resetBtn").addEventListener("click",function(){if(!arm(this,"Click again to confirm"))return;P=SEED_P.slice();E=SEED_E.slice();F=[];save(KEY.p,P);save(KEY.e,E);save(KEY.f,F);renderOwner()});
+document.querySelector(".tabs").addEventListener("click",function(e){var t=e.target.getAttribute("data-tab");if(!t)return;
+[].forEach.call(this.children,function(b){b.classList.toggle("on",b.getAttribute("data-tab")===t)});["pList","pEnq","pSite"].forEach(function(id){$(id).hidden=id!==t})});
+function renderOwner(){
+$("login").hidden=authed;$("dash").hidden=!authed;if(!authed)return;
+var av=P.filter(function(p){return p.status!=="sold"}).length,nw=E.filter(function(x){return x.status==="New"}).length;
+$("stats").innerHTML=[[P.length,"Total listings"],[av,"Available"],[P.length-av,"Sold"],[E.length,"Total enquiries"],[nw,"New enquiries"]].map(function(s){return'<div class="stat"><b>'+s[0]+'</b><span>'+s[1]+'</span></div>'}).join("");
+$("newCnt").textContent=nw?" ("+nw+" new)":"";
+$("pRows").innerHTML=P.length?P.map(function(p){var sold=p.status==="sold";
+return'<tr><td>'+(p.imgs&&p.imgs.length?'<img src="'+p.imgs[0]+'" alt="" style="width:48px;height:36px;object-fit:cover;margin-right:8px;float:left">':'')+'<b>'+esc(p.name)+'</b><br><small>'+esc(p.type)+'</small></td><td>'+esc(p.loc)+', '+esc(p.city)+'</td><td>'+price(p.lakh)+'</td><td><span class="pill '+(sold?'sold':'av')+'">'+(sold?'Sold':'Available')+'</span></td><td><div class="row-actions"><button class="btn btn-line btn-sm" data-a="edit" data-id="'+p.id+'">Edit</button><button class="btn btn-line btn-sm" data-a="sold" data-id="'+p.id+'">'+(sold?'Mark available':'Mark sold')+'</button><button class="btn btn-red btn-sm" data-a="del" data-id="'+p.id+'">Delete</button></div></td></tr>'}).join(""):'<tr><td colspan="5">No properties yet. Add one above.</td></tr>';
+$("eRows").innerHTML=E.length?E.map(function(x){
+return'<tr><td>'+new Date(x.time).toLocaleDateString("en-IN")+'</td><td><b>'+esc(x.name)+'</b><br>'+esc(x.phone)+(x.email?'<br>'+esc(x.email):'')+'</td><td>'+esc(x.property)+(x.visit?'<br><small>Visit: '+esc(x.visit)+'</small>':'')+'</td><td>'+esc(x.message||"–")+'</td><td><select data-st="'+x.id+'">'+["New","Contacted","Closed"].map(function(s){return'<option'+(s===x.status?' selected':'')+'>'+s+'</option>'}).join("")+'</select></td><td><div class="row-actions"><a class="btn btn-wa btn-sm" target="_blank" rel="noopener" href="https://wa.me/91'+esc(x.phone)+'?text='+encodeURIComponent("Hello "+x.name+", thank you for your enquiry about "+x.property+". ")+'">Reply</a><button class="btn btn-red btn-sm" data-a="delE" data-id="'+x.id+'">Delete</button></div></td></tr>'}).join(""):'<tr><td colspan="6">No enquiries yet.</td></tr>';
+renderClient()}
+$("dash").addEventListener("click",function(e){var a=e.target.getAttribute("data-a"),id=+e.target.getAttribute("data-id");if(!a)return;
+if(a==="del"){if(!arm(e.target,"Confirm?"))return;P=P.filter(function(p){return p.id!==id});save(KEY.p,P);renderOwner()}
+if(a==="delE"){if(!arm(e.target,"Confirm?"))return;E=E.filter(function(x){return x.id!==id});save(KEY.e,E);renderOwner()}
+if(a==="sold"){P.forEach(function(p){if(p.id===id)p.status=p.status==="sold"?"available":"sold"});save(KEY.p,P);renderOwner()}
+if(a==="edit"){var p=P.filter(function(x){return x.id===id})[0];
+$("pid").value=p.id;$("pn").value=p.name;$("pc").value=p.city;$("pl").value=p.loc;$("pt").value=p.type;$("pp").value=p.lakh;$("pa").value=p.area;$("pb").value=p.bhk;$("pbt").value=p.bath;$("pg").value=p.tag||"";$("pd").value=p.d||"";curImgs=(p.imgs||[]).slice();renderThumbs();
+$("pfTitle").textContent="Edit property";$("pSave").textContent="Save changes";$("pCancel").hidden=false;$("pform").scrollIntoView()}});
+$("dash").addEventListener("change",function(e){var s=e.target.getAttribute("data-st");if(!s)return;E.forEach(function(x){if(x.id==+s)x.status=e.target.value});save(KEY.e,E);renderOwner()});
+function resetForm(){$("pform").reset();curImgs=[];renderThumbs();$("pid").value="";$("pfTitle").textContent="Add new property";$("pSave").textContent="Add property";$("pCancel").hidden=true;$("e-p").textContent=""}
+$("pCancel").addEventListener("click",resetForm);
+$("pform").addEventListener("submit",function(e){e.preventDefault();
+var o={name:$("pn").value.trim(),city:$("pc").value.trim(),loc:$("pl").value.trim(),type:$("pt").value,lakh:+$("pp").value,area:$("pa").value.trim()||"–",bhk:+$("pb").value||0,bath:+$("pbt").value||0,tag:$("pg").value.trim(),d:$("pd").value.trim(),imgs:curImgs.slice()};
+if(!o.name||!o.city||!o.loc||!(o.lakh>0)){$("e-p").textContent="Please fill name, city, location and a valid price.";return}
+var id=+$("pid").value,bak=JSON.stringify(P);
+if(id){P.forEach(function(p){if(p.id===id){for(var k in o)p[k]=o[k]}})}else{o.id=Date.now();o.status="available";P.unshift(o)}
+if(!save(KEY.p,P)){P=JSON.parse(bak);$("e-p").textContent="Browser storage is full. Use fewer or smaller photos.";return}resetForm();renderOwner()});
+
+/* ---------- PHOTOS + SITE SETTINGS ---------- */
+var curImgs=[],curHero="";
+function compress(file,max){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.65))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+function renderThumbs(){$("thumbs").innerHTML=curImgs.map(function(s,i){return'<div class="thumb"><img src="'+s+'" alt=""><button type="button" data-rm="'+i+'" aria-label="Remove photo">×</button></div>'}).join("")}
+$("pimgs").addEventListener("change",async function(){var fs=[].slice.call(this.files);this.value="";$("e-p").textContent="";
+for(var i=0;i<fs.length;i++){if(curImgs.length>=5){$("e-p").textContent="Maximum 5 photos per property.";break}
+try{curImgs.push(await compress(fs[i],800))}catch(x){$("e-p").textContent="Could not read one of the photos."}}
+renderThumbs()});
+$("thumbs").addEventListener("click",function(e){var i=e.target.getAttribute("data-rm");if(i===null)return;curImgs.splice(+i,1);renderThumbs()});
+function heroPrev(){$("heroPrev").innerHTML=curHero?'<div class="thumb" style="width:160px;height:90px"><img src="'+curHero+'" alt=""><button type="button" id="heroRm" aria-label="Remove photo">×</button></div>':'<small style="color:var(--mute)">No photo selected. The default royal background is used.</small>'}
+function fillSite(){$("sName").value=S.name;$("sWa").value=S.wa;$("sPhone").value=S.phone;$("sAddr").value=S.addr;$("sTitle").value=S.title;$("sSub").value=S.sub;$("sDemo").checked=S.demo;curHero=S.hero;heroPrev()}
+$("sImg").addEventListener("change",async function(){var f=this.files[0];this.value="";if(!f)return;try{curHero=await compress(f,1400);heroPrev()}catch(x){$("e-s").textContent="Could not read the photo."}});
+$("heroPrev").addEventListener("click",function(e){if(e.target.id==="heroRm"){curHero="";heroPrev()}});
+$("sform").addEventListener("submit",async function(e){e.preventDefault();
+var w=$("sWa").value.replace(/\D/g,"");if(w.length===10)w="91"+w;
+if(!$("sName").value.trim()||w.length<11){$("e-s").textContent="Enter the company name and a valid WhatsApp number.";return}
+var np=$("sPw").value;if(np&&np.length<6){$("e-s").textContent="New password must be at least 6 characters.";return}
+if(np){try{save(KEY.w,await sha(np));$("sPw").value=""}catch(x){$("e-s").textContent="Could not change the password on this browser.";return}}
+var old=S;
+S={name:$("sName").value.trim(),wa:w,phone:$("sPhone").value.trim()||"+"+w,addr:$("sAddr").value.trim(),title:$("sTitle").value.trim()||DEF_SITE.title,sub:$("sSub").value.trim(),hero:curHero,demo:$("sDemo").checked};
+if(!save(KEY.s,S)){S=old;$("e-s").textContent="Browser storage is full. Use a smaller photo.";return}
+$("e-s").textContent="";applySite();$("sOk").hidden=false;setTimeout(function(){$("sOk").hidden=true},3000)});
+
+var taps=0,tt;$("ftxt").addEventListener("click",function(){taps++;clearTimeout(tt);tt=setTimeout(function(){taps=0},2500);if(taps>=5){taps=0;location.hash=OWNER_HASH}});
+/* ---------- ROUTER ---------- */
+function route(){var o=location.hash===OWNER_HASH;
+$("client").hidden=o;$("owner").hidden=!o;$("navClient").hidden=o;$("navOwner").hidden=!o;$("fab").hidden=o;
+if(o){renderOwner();fillSite();window.scrollTo(0,0)}else{renderClient();var el=location.hash.length>1&&$(location.hash.slice(1));if(el)el.scrollIntoView()}}
+window.addEventListener("hashchange",route);applySite();route();
+</script>
+</body>
+</html>
